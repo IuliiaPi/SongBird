@@ -71,9 +71,6 @@ function showRadioList(radio) {
 const currentTime = document.querySelector('.current-time');
 const trackDuration = document.querySelector('.track-duration');
 
-// audio.src = item.audio;
-
-// console.log(item.audio);
 const audio = new Audio(item.audio);
 
 // console.log(item.audio);
@@ -105,40 +102,36 @@ btnPlay.addEventListener('click', playAudio);
 
 console.log("hi");
 
-
-
-
-// const volume = document.querySelector('.volume');
-// const volumeRange = document.querySelector('.volume-range');
-
-// function toggleBtnVolume() {
-//     if (volume.classList.toggle('mute')) {
-//         audio.volume = 0;
-//     } else {
-//         audio.volume = 0.5;
-//     }
-// }
-// volume.addEventListener('click', toggleBtnVolume);
-
-// function changeVolume() {
-//     audio.volume = volumeRange.value / 1;
-// }
-// volumeRange.addEventListener('change', changeVolume);
-
-
-
 });
 
 });
 }
 
-// btnPlay.addEventListener('click', toggleBtn);
+btnPlay.addEventListener('click', toggleBtn);
 
-// function toggleBtn() {
-//     btnPlay.classList.toggle('pause');
-//     console.log("ho-ho");
-//     playAudio();
-// }
+function toggleBtn() {
+    btnPlay.classList.toggle('pause');
+    playAudio();
+}
+
+
+const volume = document.querySelector('.volume');
+const volumeRange = document.querySelector('.volume-range');
+
+function toggleBtnVolume() {
+    if (volume.classList.toggle('mute')) {
+        audio.volume = 0;
+    } else {
+        audio.volume = 0.5;
+    }
+}
+volume.addEventListener('click', toggleBtnVolume);
+
+function changeVolume() {
+    audio.volume = volumeRange.value / 1;
+}
+volumeRange.addEventListener('change', changeVolume);
+
 
 // birdsData --------------------------------------------------
 

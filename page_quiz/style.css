@@ -159,8 +159,14 @@ body {
     /* margin: 15px; */
 }
 
+.gallery-item:hover {
+    color: #338a71;
+    transition: all 0.3s ease;
+}
+
 .gallery-item:active {
     color: #338a71;
+    opacity: 0.7;
     transition: all 0.3s ease;
 }
 
@@ -187,6 +193,12 @@ body {
 .mystery-bird__img,
 .checked-bird__img {
     border-radius: 20px;
+}
+
+.mystery-bird__title {
+    font-weight: 400;
+    font-size: 24px;
+    padding-left: 40px;
 }
 
 .line {
@@ -326,7 +338,7 @@ body {
 
 .radio-item {
     display: flex;
-    
+
     align-items: center;
     gap: 10px;
     cursor: pointer;
@@ -360,7 +372,7 @@ body {
     cursor: pointer;
 }
 
-.input-item:checked + .label-item {
+.input-item:checked+.label-item {
     color: green;
 }
 
@@ -388,6 +400,20 @@ body {
     border-radius: 5px;
 
     cursor: pointer;
+}
+
+.btn__next:hover {
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.btn__next:active {
+    font-size: 20px;
+    opacity: 0.9;
+    transition: 0.3s;
+    /* border: 0;
+    outline: 0;
+    transform: scale(1.1); */
 }
 
 /* Main styles end */
