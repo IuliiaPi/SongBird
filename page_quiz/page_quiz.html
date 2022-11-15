@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Song Bird">
+    <meta name="keywords" content="game, quiz, Song Bird, Iuliia Pidlisna">
+    <meta name="author" content="Iuliia Pidlisna">
+
+    <title>Song Bird</title>
+
+    <link rel="icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="style.css" title="Basic">
+    <script defer src="./index.js" type="module"></script>
+
+</head>
+
+<body>
+
+    <div class="body-wrapper">
+
+        <header id="header" class="header">
+            <div class="container header__container">
+
+                <div class="logo header__logo">
+                    <a href="../page_start/page_start.html" class="link logo__link">
+                        <h1 class="logo__text"> Song Bird </h1>
+                    </a>
+                </div>
+
+                <p class="header__score"> Score: <span class="score-counter">0</span></p>
+
+            </div>
+        </header>
+
+        <main id="main" class="main">
+            <div class="container main__container">
+
+                <!-- category-birds-list  -->
+
+                <div class="block block__birds">
+                    <ul class="category-birds-list">
+
+                    </ul>
+
+                </div>
+
+                <!-- mystery-bird  -->
+
+                <div class="block block__mystery-bird">
+                    <img src="../assets/img/mystery_bird.jpeg" class="mystery-bird__img" alt="mystery bird" width="200"
+                        height="150">
+
+                    <div class="mystery-bird__player">
+                        <h2 class="mystery-bird__title"> ? ? ? </h2>
+
+                        <hr class="line">
+
+                        <div class="mystery__player">
+
+                            <div class="player-controls">
+                                <button class="play player-icon"></button>
+
+                                <div class="volume-container">
+                                    <button class="volume player-icon"></button>
+                                    <input class="volume-range" type="range" min="0" max="1" step="0.01" value="0.2">
+                                </div>
+                            </div>
+
+                            <div class="progress-bar-container">
+                                <label for="progress-bar" class="audio-title"> </label>
+                                <div class="progress-time">
+                                    <div class="current-time">00:00</div>
+                                    <div class="progress-bar">
+                                        <progress id="progress" class="progress" max="100" value="0"></progress>
+                                    </div>
+                                    <div class="track-duration">00:00</div>
+                                </div>
+                            </div>
+
+                            <ul class="play-list"></ul>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- radio-birds-list  -->
+
+                <div class="block block__radio">
+                    <ul class="radio-birds-list">
+
+                    </ul>
+                </div>
+
+                <!-- checked-bird  -->
+
+                <div class="block block__checked-bird" id="id">
+
+                    <div class="checked-bird">
+                        <img id="image" class="checked-bird__img">
+
+                        <div class="checked-bird__player">
+                            <h2 class="checked-bird__title" id="name"></h2>
+                            <hr class="line">
+                            <p class="checked-bird__subtitle" id="species"></p>
+                            <hr class="line">
+                            <!-- player  -->
+                            <div class="player" id="audio">
+
+                                <div class="player-controls">
+                                    
+                                    <button class="play player-icon"></button>
+                                    
+                                    <div class="volume-container">
+                                        <button class="volume player-icon"></button>
+                                        <input class="volume-range" type="range" min="0" max="1" step="0.01" value="0.2">
+                                    </div>
+                                </div>
+                    
+                                <div class="progress-bar-container">
+                                    <label for="progress-bar" class="audio-title"> </label>
+                                    <div class="progress-time">
+                                        <div class="current-time">00:00</div>
+                                        <div class="progress-bar">
+                                            <progress id="progress" class="progress" max="100" value="0"></progress>
+                                        </div>
+                                        <div class="track-duration">00:00</div>
+                                    </div>
+                                </div>
+                    
+                                <ul class="play-list"></ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- description  -->
+                    <p class="checked-bird__description" id="description"></p>
+
+                </div>
+
+                <!-- btn__next  -->
+
+                <div class="block block__btn">
+                    <button class="btn btn__next"> Next </button>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- footer  -->
+
+        <footer id="footer" class="footer">
+
+            <div class="container footer__container">
+
+                <div class="my-github">
+                    <a class="link my-github__link" href="https://github.com/IuliiaPi" target="_blank">
+                        <img class="my-github__img" src="../assets/svg/github.png" alt="my-github" width="20"
+                            height="20">
+                        IuliiaPi
+                    </a>
+                </div>
+
+                <div class="time">
+                    <time class="copyright">&copy; 2022 </time>
+                </div>
+
+                <div class="rs-school">
+                    <a class="link rs-school__link" href="https://rs.school/js/" target="_blank">
+                        <img class="rs-school__img" src="https://rs.school/images/rs_school_js.svg" alt="rs-school"
+                            width="50" height="50"></a>
+                </div>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
