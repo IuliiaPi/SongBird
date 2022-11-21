@@ -21,29 +21,52 @@ import birdGallery from './bird_gallery_list.js';
 const galleryListContainer = document.querySelector('.gallery-list');
 // const galleryList = galleryListContainer.childNodes;
 
-// const birdsList = document.querySelector('.birds-list');
-
 birdGallery.forEach((item, index) => {   // or  for(let i = 0; i < birdGallery.length; i++) { }
     const galleryItem = document.createElement('li');
     galleryItem.classList.add('gallery-item');
     galleryItem.textContent = item.name;
     galleryListContainer.append(galleryItem);
 
-    galleryItem.addEventListener('click', () => {
-        showBirdsList(item.data);
+        galleryItem.addEventListener('click', () => {
+            showBirdsList(item.data);
+            // galleryItem.forEach (e => e.classList.remove('active'));
+            // birdGallery.forEach((i) => {i.classList.remove('active')});
+            
+            galleryItem.classList.add('active');
+       
+            
+            //     if (galleryItem.classList.contains('active')) {
+            //         galleryItem.classList.remove('active');
+            //    } else galleryItem.classList.add('active');
+        });
     });
 
-});
 
 
-// birdsData --------------------------------------------------
 
-const name = document.querySelector('#name');
-const species = document.querySelector('#species');
-const audio = document.querySelector('#audio');
+// let buttons = document.querySelectorAll('button');
+
+// buttons.forEach(button => {
+//     button.addEventListener('click', function () {
+//         buttons.forEach(btn => btn.classList.remove('active'));
+//         this.classList.add('active');
+//     });
+// });
+
+
+// birdsData ---------  birds list  -----------------------------------------
+
+// const name = document.querySelector('#name');
+// const species = document.querySelector('#species');
+// const audio = document.querySelector('#audio');
 // audio.innerHTML = birdsData_1.audio;
-const description = document.querySelector('#description');
-const image = document.querySelector('#image');
+// const description = document.querySelector('#description');
+// const image = document.querySelector('#image');
+
+const btnPlay = document.querySelector('.play');
+
+let audio = document.querySelector('.player');
+// let audio;
 
 function showBirdsList(birds) {
     const birdsListContainer = document.querySelector('.birds-list');
@@ -56,7 +79,7 @@ function showBirdsList(birds) {
         birdsListContainer.append(birdItem);
 
         const image = document.createElement('img');
-        image.classList.add('checked-bird__img');
+        image.classList.add('bird__img');
         image.src = item.image;
         image.alt = item.name;
         image.width = 200;
@@ -64,31 +87,106 @@ function showBirdsList(birds) {
         birdItem.append(image);
 
         const name = document.createElement('h2');
-        name.classList.add('checked-bird__title');
+        name.classList.add('bird__title');
         name.textContent = item.name;  // or li.textContent = `${playList[index].title}`;
         birdItem.append(name);
 
         const species = document.createElement('p');
-        species.classList.add('checked-bird__subtitle');
+        species.classList.add('bird__subtitle');
         species.textContent = item.species;
         birdItem.append(species);
 
         const audioContainer = document.createElement('div');
         birdItem.append(audioContainer);
-        const audio = document.querySelector('.player');
-         audio.classList.add('show');
+        // const audio = document.querySelector('.player');
+        audio.classList.add('show');
         // audio.classList.add('player');
-        audio.src = item.audio;
+        // audio.src = item.audio;
         audioContainer.append(audio);
 
         const description = document.createElement('p');
-        description.classList.add('checked-bird__description');
+        description.classList.add('bird__description');
         description.textContent = item.description;
         birdItem.append(description);
+
+
+
+        // player  -----------------------------------------------------------------------
+
+
+        const currentTime = document.querySelector('.current-time');
+        const trackDuration = document.querySelector('.track-duration');
+
+        audio = new Audio(item.audio);
+
+        // console.log(item.audio);
+        // console.log(audio);
+
+        let isPlay = false;
+        let playNum = 0;
+
+        function playAudio() {
+            if (!isPlay) {
+                audio.src = item.audio;
+
+                console.log(item.audio);
+
+                audio.currentTime = 0;
+                audio.play();
+                isPlay = true;
+
+                // trackDuration.textContent = `${playList[playNum].duration}`;
+            } else {
+                audio.pause();
+                isPlay = false;
+            }
+        }
+        btnPlay.addEventListener('click', playAudio);
+
     });
 }
 
 
+
+
+
+btnPlay.addEventListener('click', toggleBtn);
+
+function toggleBtn() {
+    btnPlay.classList.toggle('pause');
+    playAudio();
+}
+
+
+// volume 
+const volume = document.querySelectorAll('.volume');
+const volumeRange = document.querySelectorAll('.volume-range');
+
+// for (let i = 0; i < volume.length; i++) {
+//     volume[i].addEventListener('click', toggleBtnVolume);
+//   }
+
+volume.forEach((e) => {
+
+    function toggleBtnVolume() {
+        if (e.classList.toggle('mute')) {
+            audio.volume = 0;
+        } else {
+            audio.volume = 0.5;
+        }
+    }
+
+    e.addEventListener('click', toggleBtnVolume);
+});
+
+volumeRange.forEach((e) => {
+
+    function changeVolume() {
+        audio.volume = e.value / 1;
+    }
+
+    e.addEventListener('change', changeVolume);
+});
 
 
 

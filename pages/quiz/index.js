@@ -7,18 +7,72 @@ const galleryListContainer = document.querySelector('.category-birds-list');
 birdGallery.forEach((item, index) => {   // or  for(let i = 0; i < birdGallery.length; i++) { }
     const galleryItem = document.createElement('li');
     galleryItem.classList.add('gallery-item');
+    // galleryItem.classList.remove('gallery-item_checked');
     galleryItem.textContent = item.name;
     galleryListContainer.append(galleryItem);
 
     galleryItem.addEventListener('click', () => {
+
+        if (galleryItem.classList.contains('gallery-item_checked') )
+        {
+            galleryItem.classList.remove('gallery-item_checked') 
+        } else {
+            galleryItem.classList.add('gallery-item_checked') 
+           }
+        // galleryItem.classList.remove('gallery-item');
+        // galleryItem.classList.add('gallery-item_checked');
         showRadioList(item.data);
+        // galleryItem.classList.remove('gallery-item_checked');
     });
+    // galleryItem.classList.remove('gallery-item_checked');
+    // galleryItem.classList.add('gallery-item');
 });
+
+
+// mystery-bird  --------------------------------------------------------
+
+const btnPlayMystery = document.querySelector('.mystery-play');
+
+
+// const audioM = new Audio(item.audio);
+
+// // console.log(item.audio);
+// // console.log(audio);
+
+// let isPlay = false;
+
+// function playAudioM() {
+//     if (!isPlay) {
+//         audioM.src = item.audio;
+
+//         console.log(item.audio);
+
+//         audioM.currentTime = 0;
+//         audioM.play();
+//         isPlay = true;
+//     } else {
+//         audioM.pause();
+//         isPlay = false;
+//     }
+// }
+// btnPlayMystery.addEventListener('click', playAudioM);
+
+
+btnPlayMystery.addEventListener('click', toggleBtnM);
+
+function toggleBtnM() {
+    btnPlayMystery.classList.toggle('pause');
+    // playAudioM();
+}
+
+
+
 
 // bird ratio  ------------------------------------------------------------
 
-const btnPlay = document.querySelector('.play');
+const btnPlay = document.querySelector('.checked-play');
 
+let audio;
 
 function showRadioList(radio) {
     const radioListContainer = document.querySelector('.radio-birds-list');
@@ -49,7 +103,7 @@ function showRadioList(radio) {
             const name = document.querySelector('#name');
             const species = document.querySelector('#species');
             // const audio = document.querySelector('#audio');
-            
+
             const description = document.querySelector('#description');
 
             image.src = item.image;
@@ -61,50 +115,48 @@ function showRadioList(radio) {
             species.textContent = item.species;
             description.textContent = item.description;
 
-          
 
 
 
-// player  -----------------------------------------------------------------------
+
+            // player  -----------------------------------------------------------------------
 
 
-const currentTime = document.querySelector('.current-time');
-const trackDuration = document.querySelector('.track-duration');
+            const currentTime = document.querySelector('.current-time');
+            const trackDuration = document.querySelector('.track-duration');
 
-const audio = new Audio(item.audio);
+            audio = new Audio(item.audio);
 
-// console.log(item.audio);
-// console.log(audio);
+            // console.log(item.audio);
+            // console.log(audio);
 
-let isPlay = false;
-let playNum = 0;
+            let isPlay = false;
+            let playNum = 0;
 
-function playAudio() {
-    if (!isPlay) {
-        // audio.src = "https://github.com/IuliiaPi/stage1-tasks/blob/momentum/assets/sounds/Aqua%20Caelestis.mp3?raw=true";
-        // audio.src = "../assets/sounds/River Flows In You.mp3"
-        
-        audio.src = item.audio;
-        
-        console.log(item.audio);
+            function playAudio() {
+                if (!isPlay) {
+                    // audio.src = "https://github.com/IuliiaPi/stage1-tasks/blob/momentum/assets/sounds/Aqua%20Caelestis.mp3?raw=true";
+                    // audio.src = "../assets/sounds/River Flows In You.mp3"
 
-        audio.currentTime = 0;
-        audio.play();
-        isPlay = true;
-        
-        // trackDuration.textContent = `${playList[playNum].duration}`;
-    } else {
-        audio.pause();
-        isPlay = false;
-    }
-}
-btnPlay.addEventListener('click', playAudio);
+                    audio.src = item.audio;
 
-console.log("hi");
+                    console.log(item.audio);
 
-});
+                    audio.currentTime = 0;
+                    audio.play();
+                    isPlay = true;
 
-});
+                    // trackDuration.textContent = `${playList[playNum].duration}`;
+                } else {
+                    audio.pause();
+                    isPlay = false;
+                }
+            }
+            btnPlay.addEventListener('click', playAudio);
+
+        });
+
+    });
 }
 
 btnPlay.addEventListener('click', toggleBtn);
@@ -115,22 +167,35 @@ function toggleBtn() {
 }
 
 
-const volume = document.querySelector('.volume');
-const volumeRange = document.querySelector('.volume-range');
+// volume 
+const volume = document.querySelectorAll('.volume');
+const volumeRange = document.querySelectorAll('.volume-range');
 
-function toggleBtnVolume() {
-    if (volume.classList.toggle('mute')) {
-        audio.volume = 0;
-    } else {
-        audio.volume = 0.5;
+// for (let i = 0; i < volume.length; i++) {
+//     volume[i].addEventListener('click', toggleBtnVolume);
+//   }
+
+volume.forEach((e) => {
+
+    function toggleBtnVolume() {
+        if (e.classList.toggle('mute')) {
+            audio.volume = 0;
+        } else {
+            audio.volume = 0.5;
+        }
     }
-}
-volume.addEventListener('click', toggleBtnVolume);
 
-function changeVolume() {
-    audio.volume = volumeRange.value / 1;
-}
-volumeRange.addEventListener('change', changeVolume);
+    e.addEventListener('click', toggleBtnVolume);
+});
+
+volumeRange.forEach((e) => {
+
+    function changeVolume() {
+        audio.volume = e.value / 1;
+    }
+
+    e.addEventListener('change', changeVolume);
+});
 
 
 // birdsData --------------------------------------------------
